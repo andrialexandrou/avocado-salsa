@@ -3,115 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accessible UI Test Page</title>
+    <title>Feature Test Page</title>
     <style>
-        .visually-hidden {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            border: 0;
-        }
-
-        .image-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            padding: 1rem;
-        }
-
         .card {
-            border: 1px solid #ccc;
-            padding: 1rem;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 10px;
             border-radius: 4px;
         }
 
-        .button-group {
-            display: flex;
-            gap: 0.5rem;
-            margin: 1rem;
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
         }
 
-        button {
-            padding: 0.5rem 1rem;
-            border: 2px solid #333;
+        .btn {
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            border: none;
             border-radius: 4px;
-            background: #fff;
             cursor: pointer;
-        }
-
-        button:focus-visible {
-            outline: 3px solid #4CAF50;
-            outline-offset: 2px;
-        }
-
-        button[aria-expanded="true"] {
-            background: #e0e0e0;
         }
 
         .hidden {
             display: none;
         }
+
+        #notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border-radius: 4px;
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Accessible UI Components</h1>
-        <nav aria-label="Main navigation">
-            <ul role="menubar">
-                <li role="none"><a href="#gallery" role="menuitem">Gallery</a></li>
-                <li role="none"><a href="#interactive" role="menuitem">Interactive Elements</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section id="gallery" aria-labelledby="gallery-heading">
-            <h2 id="gallery-heading">Image Gallery</h2>
-            <div class="image-gallery">
-                <article class="card">
-                    <img src="placeholder1.jpg" alt="Descriptive text for image 1" width="200" height="200">
-                    <h3>Image Title 1</h3>
-                    <button aria-expanded="false" aria-controls="desc1">Show Description</button>
-                    <p id="desc1" class="hidden">Detailed description of image 1</p>
-                </article>
-                <article class="card">
-                    <img src="placeholder2.jpg" alt="Descriptive text for image 2" width="200" height="200">
-                    <h3>Image Title 2</h3>
-                    <button aria-expanded="false" aria-controls="desc2">Show Description</button>
-                    <p id="desc2" class="hidden">Detailed description of image 2</p>
-                </article>
+    <div class="container">
+        <header>
+            <h1>Product List</h1>
+            <div class="filters">
+                <button class="btn" id="filterBtn">Filter Products</button>
+                <button class="btn" id="sortBtn">Sort by Price</button>
             </div>
-        </section>
+        </header>
 
-        <section id="interactive" aria-labelledby="interactive-heading">
-            <h2 id="interactive-heading">Interactive Elements</h2>
-            <div class="button-group" role="group" aria-label="Image controls">
-                <button id="prevButton" aria-label="Previous image">Previous</button>
-                <button id="nextButton" aria-label="Next image">Next</button>
+        <div class="grid" id="productGrid">
+            <div class="card">
+                <h3>Product 1</h3>
+                <p>Price: $99.99</p>
+                <button class="btn add-to-cart">Add to Cart</button>
             </div>
-            
-            <form>
-                <div role="group" aria-labelledby="feedback-heading">
-                    <h3 id="feedback-heading">Feedback Form</h3>
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-                    
-                    <label for="feedback">Your feedback:</label>
-                    <textarea id="feedback" name="feedback" rows="4" required></textarea>
-                    
-                    <button type="submit">Submit Feedback</button>
-                </div>
-            </form>
-        </section>
-    </main>
+            <div class="card">
+                <h3>Product 2</h3>
+                <p>Price: $149.99</p>
+                <button class="btn add-to-cart">Add to Cart</button>
+            </div>
+            <div class="card">
+                <h3>Product 3</h3>
+                <p>Price: $79.99</p>
+                <button class="btn add-to-cart">Add to Cart</button>
+            </div>
+        </div>
 
-    <footer>
-        <p>Test page for accessibility features</p>
-    </footer>
+        <div id="cartCount">
+            Items in cart: <span id="count">0</span>
+        </div>
+    </div>
+
+    <div id="notification">Item added to cart!</div>
 
     <script src="main.js"></script>
 </body>
